@@ -1,165 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notenrechner - Deutsches Schulsystem</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="container">
-        <header class="header">
-            <h1 class="title">Notenrechner</h1>
-            <p class="subtitle">Berechne deine Endjahresnote nach deutschem Schulsystem</p>
-        </header>
-
-        <div class="mode-selector">
-            <button id="modeWeiterführend" class="mode-btn active">Unter-/ Mittelstufe</button>
-            <button id="modeOberstufe" class="mode-btn">Oberstufe</button>
-        </div>
-
-        <main class="main-content">
-            <div class="calculator-section">
-                <div class="input-card">
-                    <h2>Fach hinzufügen</h2>
-                    <form id="gradeForm" class="grade-form">
-                        <div class="form-group">
-                            <label for="subjectName">Fachname</label>
-                            <input type="text" id="subjectName" placeholder="z.B. Mathematik" required>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="gradeValue" id="gradeLabel">Note</label>
-                                <select id="gradeValue" required>
-                                    <option value="">Note wählen</option>
-                                    <option value="1">1 (sehr gut)</option>
-                                    <option value="2">2 (gut)</option>
-                                    <option value="3">3 (befriedigend)</option>
-                                    <option value="4">4 (ausreichend)</option>
-                                    <option value="5">5 (mangelhaft)</option>
-                                    <option value="6">6 (ungenügend)</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="subjectType">Fachtyp</label>
-                                <select id="subjectType" required>
-                                    <option value="">Fachtyp wählen</option>
-                                    <option value="hauptfach" id="hauptfachOption">Hauptfach</option>
-                                    <option value="nebenfach">Nebenfach</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <button type="submit" class="add-btn">
-                            <span class="btn-text">Fach hinzufügen</span>
-                            <span class="btn-icon">+</span>
-                        </button>
-                    </form>
-                </div>
-
-                <div class="grades-list-card">
-                    <div class="card-header">
-                        <h2>Deine Fächer</h2>
-                        <button id="clearAll" class="clear-btn" style="display: none;">Alle löschen</button>
-                    </div>
-                    
-                    <div id="gradesList" class="grades-list">
-                        <div class="empty-state">
-                            <div class="empty-icon">📚</div>
-                            <p>Noch keine Fächer hinzugefügt</p>
-                            <span>Füge dein erstes Fach hinzu, um zu beginnen</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="results-section">
-                <div class="results-card">
-                    <h2>Aktuelle Ergebnisse</h2>
-                    
-                    <div class="result-item">
-                        <span class="result-label">Notendurchschnitt</span>
-                        <span id="currentAverage" class="result-value">--</span>
-                    </div>
-                    
-                    <div class="result-item">
-                        <span class="result-label">Bewertung</span>
-                        <span id="gradeDescription" class="result-value grade-desc">--</span>
-                    </div>
-                    
-                    <div class="result-item" id="abiturResult" style="display: none;">
-                        <span class="result-label">Abiturnote</span>
-                        <span id="abiturGrade" class="result-value">--</span>
-                    </div>
-
-                    <div class="result-item">
-                        <span class="result-label" id="mainSubjectAverageLabel">Hauptfächerschnitt</span>
-                        <span id="mainSubjectAverage" class="result-value">--</span>
-                    </div>
-
-                    <div class="result-item">
-                        <span class="result-label" id="minorSubjectAverageLabel">Nebenfächerschnitt</span>
-                        <span id="minorSubjectAverage" class="result-value">--</span>
-                    </div>
-
-                    <div class="result-item" id="bestMainSubjects" style="display: none;">
-                        <span class="result-label">Beste LKs</span>
-                        <span id="bestLks" class="result-value">--</span>
-                    </div>
-                    
-                    <div class="result-item">
-                        <span class="result-label">Anzahl Fächer</span>
-                        <span id="subjectCount" class="result-value">--</span>
-                    </div>
-                </div>
-
-                <div class="grade-scale-card">
-                    <h3>Notenskala</h3>
-                    <div class="grade-scale">
-                        <div class="scale-item">
-                            <span class="scale-number grade-1">1</span>
-                            <span class="scale-description">sehr gut</span>
-                            <span class="scale-range">1,0 - 1,5</span>
-                        </div>
-                        <div class="scale-item">
-                            <span class="scale-number grade-2">2</span>
-                            <span class="scale-description">gut</span>
-                            <span class="scale-range">1,6 - 2,5</span>
-                        </div>
-                        <div class="scale-item">
-                            <span class="scale-number grade-3">3</span>
-                            <span class="scale-description">befriedigend</span>
-                            <span class="scale-range">2,6 - 3,5</span>
-                        </div>
-                        <div class="scale-item">
-                            <span class="scale-number grade-4">4</span>
-                            <span class="scale-description">ausreichend</span>
-                            <span class="scale-range">3,6 - 4,5</span>
-                        </div>
-                        <div class="scale-item">
-                            <span class="scale-number grade-5">5</span>
-                            <span class="scale-description">mangelhaft</span>
-                            <span class="scale-range">4,6 - 5,5</span>
-                        </div>
-                        <div class="scale-item">
-                            <span class="scale-number grade-6">6</span>
-                            <span class="scale-description">ungenügend</span>
-                            <span class="scale-range">5,6 - 6,0</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-
-        <div id="notification" class="notification"></div>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html> -->
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -801,7 +639,6 @@
                             <div class="form-group">
                                 <label for="subjectType">Fachtyp</label>
                                 <select id="subjectType" required>
-                                    <option value="">Fachtyp wählen</option>
                                     <option value="hauptfach" id="hauptfachOption">Hauptfach</option>
                                     <option value="nebenfach">Nebenfach</option>
                                 </select>
@@ -993,8 +830,10 @@
             constructor() {
                 this.grades = [];
                 this.currentMode = 'weiterführend';
+                document.getElementById('subjectType').value = 'nebenfach';
                 this.initializeEventListeners();
                 this.updateModeDisplay();
+                this.loadFromLocalStorage();
             }
 
             initializeEventListeners() {
@@ -1015,6 +854,7 @@
                 this.currentMode = mode;
                 this.updateModeDisplay();
                 this.updateResults();
+                this.loadFromLocalStorage();
             }
 
             updateModeDisplay() {
@@ -1129,6 +969,7 @@
                 };
 
                 this.grades.push(grade);
+                this.saveToLocalStorage();
                 this.updateDisplay();
                 this.clearForm();
                 this.showNotification('Fach erfolgreich hinzugefügt!', 'success');
@@ -1138,6 +979,7 @@
                 this.grades = this.grades.filter(grade => grade.id !== id);
                 this.updateDisplay();
                 this.showNotification('Fach entfernt', 'success');
+                this.saveToLocalStorage();
             }
 
             clearAllGrades(silent = false) {
@@ -1146,7 +988,24 @@
                 this.grades = [];
                 this.updateDisplay();
                 if (!silent) {
+                    this.saveToLocalStorage();
                     this.showNotification('Alle Fächer gelöscht', 'success');
+                }
+            }
+
+            saveToLocalStorage(mode = this.currentMode) {
+                localStorage.setItem(mode, JSON.stringify(this.grades));
+            }
+
+            loadFromLocalStorage(mode = this.currentMode) {
+                const data = localStorage.getItem(mode);
+                if (data) {
+                    this.grades = JSON.parse(data);
+                    this.updateDisplay();
+                    if( this.grades.length > 0) {
+                        this.showNotification('Fächer erfolgreich geladen', 'success');
+                        this.updateDisplay();
+                    }
                 }
             }
 
